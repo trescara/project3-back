@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -7,7 +6,8 @@ const ArticlesSchema = new Schema({
   title: String,
   body: String,
   author: String,
-}, { timestamps: true });
+},
+  { timestamps: true });
 
 ArticlesSchema.methods.toJSON = function () {
   return {
@@ -20,4 +20,6 @@ ArticlesSchema.methods.toJSON = function () {
   };
 };
 
-mongoose.model('Articles', ArticlesSchema);
+const articlesModel = mongoose.model('Articles', ArticlesSchema);
+module.exports = articlesModel;
+

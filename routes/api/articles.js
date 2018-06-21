@@ -2,6 +2,9 @@
 const mongoose = require('mongoose');
 const router = require('express').Router();
 const Articles = mongoose.model('Articles');
+const articlesController = require('../../controllers/events.controller');
+
+
 
 router.post('/', (req, res, next) => {
   const { body } = req;
@@ -43,6 +46,10 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+router.get('/seed', articlesController.seedEvents )
+
+
+
 router.param('id', (req, res, next, id) => {
   return Articles.findById(id, (err, article) => {
     if (err) {
@@ -52,7 +59,7 @@ router.param('id', (req, res, next, id) => {
       return next();
     }
   }).catch(next);
-});
+})
 
 router.get('/:id', (req, res, next) => {
   return res.json({
